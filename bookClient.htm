@@ -1,0 +1,56 @@
+	
+		<!DOCTYPE html">
+		
+		<html >
+	   <head>
+		      <title>Sample Database Query</title>
+		      <style type = "text/css">
+		         body  { background-color: #F0E68C } 
+		         h2    { font-family: arial, sans-serif;
+		                 color: blue }
+		         input { background-color: blue;
+		                 color: yellow;
+		                 font-weight: bold }
+		      </style>
+		   </head>
+		   <body>
+		      
+			  <h2> Insert to MySQL database.</h2>
+			  <form method = "post" action = "bookServer1.php">
+			  <div>
+			  <p>book ID
+			   <input name = "ID" type = "int" value = "0" size = "20"/><br /></p>
+			   <p>Book Title
+			   <input name = "Title" type = "text" value ="xxxx" size = "40" />
+			   </p><br/>
+			   <p>Category
+			   <input name = "Category" type = "text" value = "xxx" size = "20"/>
+			   </p>ISBN
+			   <br />
+			   <input name = "ISBN" type = "text" value ="xxxx" size = "20" />
+			   </p>
+			   <br/>
+			    <input type = "submit" value = "Insert to DB" />
+				</div>
+			  </form>
+			  
+			  <h2> Querying a MySQL database.</h2>
+		      <form method = "post" action = "bookServer2.php">
+		         <div>
+		            <p>Select a field to display:
+		               <!-- add a select box containing options --> 
+		               <!-- for SELECT query -->
+		               <select name = "select">                   
+		                  <option selected = "selected">*</option>
+		                  <option>ID</option>                     
+		                  <option>Title</option>                  
+		                  <option>Category</option>               
+		                  <option>ISBN</option>                   
+		               </select></p>                              
+		            <input type = "submit" value = "Send Query" />
+		         </div>
+				 <br/>
+		      </form>
+			  
+		   </body>
+		</html>
