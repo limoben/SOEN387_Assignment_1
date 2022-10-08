@@ -21,8 +21,8 @@
 		
 		         // build SELECT query
 		      
-				 $query="INSERT INTO books (ID,Title,Category,ISBN)
-				 VALUES ('$ID','$Title','$Category','$ISBN')";
+				 $query="INSERT INTO course (title,semester,days,time,instructor,room,startDate,endDate,adminID)
+				 VALUES ('$Title','$Semester','$Days','$Time', '$Instructor', '$Room', '$StartDate', '$EndDate', '$AdminId')";
 				 
 				 
 		         // Connect to MySQL
@@ -44,7 +44,7 @@
 		         } // end if
 				else
 				{
-				print("Book was insterted into the Database correctly");
+				print("Course was insterted into the Database correctly");
 				}
 		         mysqli_close( $database );
 		      ?><!-- end PHP script -->
