@@ -21,7 +21,7 @@
       die( "Could not connect to database </body></html>" );
 
       // open Products database
-      if ( !mysqli_select_db( $database, "products") )
+      if ( !mysqli_select_db( $database, "course_management") )
           die( "Could not open products database </body></html>" );
 
       // query Products database
@@ -92,7 +92,7 @@
               let input = document.createElement("input");
               input.setAttribute("id",courseID);
               input.setAttribute("type","text");
-              input.setAttribute("name","courseID");
+              input.setAttribute("name","courseID[]");
               input.setAttribute('value',courseID);
               input.setAttribute('readonly', 'true');
               registerForm.insertBefore(input, registerButton);
