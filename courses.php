@@ -104,11 +104,13 @@
             console.log("Already have 5 courses.");
           }
         } else {
-          i--;
-          courseArray = courseArray.filter(element => element!==courseID);
-          console.log(courseArray);
-          let cancelInput = document.getElementById(courseID.toString());
-          registerForm.removeChild(cancelInput);
+          if(courseArray.includes(courseID)){
+            i--;
+            courseArray = courseArray.filter(element => element!==courseID);
+            console.log(courseArray);
+            let cancelInput = document.getElementById(courseID.toString());
+            registerForm.removeChild(cancelInput);
+          }
           console.log("canceled.");
         }
       }
