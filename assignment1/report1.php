@@ -1,28 +1,32 @@
-		
-		<!DOCTYPE html >
-		
-		
-		<html>
-		   <head>
-		      <title>Search Results</title>
-		   <style type = "text/css">
-		         body  { font-family: arial, sans-serif;
-		                 background-color: #F0E68C } 
-		         table { background-color: #ADD8E6 }
-		         td    { padding-top: 2px;
-		                 padding-bottom: 2px;
-		                 padding-left: 4px;
-		                 padding-right: 4px;
-		                 border-width: 1px;
-		                 border-style: inset }
-		      </style>
-		   </head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Assignment 1</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Google Fonts Roboto -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+    <!-- MDB -->
+    <link rel="stylesheet" href="css/mdb.min.css" />
+	<link rel="stylesheet" href="./report2.css" />
+  </head>
 		   <body>
 		      <?php
 		         extract( $_POST );
 		
 		         // build SELECT query
-		         $query = "SELECT courseID FROM registration where studentID = $studentID";
+		         $query = "SELECT course.title, course.instructor,registration.courseID FROM registration join course where course.ID =registration.courseID and registration.studentID = $studentID";
 		         // Connect to MySQL
 		         if ( !( $database = mysqli_connect( "localhost",
 		            "root", "" ) ) )                      
@@ -41,8 +45,26 @@
 		
 		         mysqli_close( $database );
 		      ?><!-- end PHP script -->
-		      <h3>Search Results</h3>
-		      <table>
+		     <section class="intro">
+  <div class="bg-image h-100" style="background-image: url('https://mdbootstrap.com/img/Photos/new-templates/tables/img2.jpg');">
+    <div class="mask d-flex align-items-center h-100" style="background-color: rgba(0,0,0,.25);">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <div class="card bg-dark shadow-2-strong">
+              <div class="card-body">
+                <div class="table-responsive">
+			  
+								<h2 class="text-center mb-5">Report System</h2>
+		      <table class="table">
+			  <thead>
+                      <tr>
+                        <th scope="col">Course Title</th>
+						<th scope="col">Course Instructor</th>
+						<th scope="col">Course ID</th>
+                      </tr>
+                    </thead>
+					<tbody>
 		         <?php
 		            // fetch each record in result set
 		            for ( $counter = 0; $row = mysqli_fetch_row( $result );
@@ -56,9 +78,16 @@
 		               print( "</tr>" );
 		            } // end for
 		         ?><!-- end PHP script -->
+				 </tbody>
 		      </table>
-		      <br />Your search yielded <strong>
-		      <?php print( "$counter" ) ?> results.<br /><br /></strong>
-		      <h5> Thank you for using the application!</h5>
+			  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 		   </body>
 		</html>
