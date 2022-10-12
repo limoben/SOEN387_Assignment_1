@@ -13,7 +13,10 @@
       // build SELECT query
       $query = "SELECT firstName FROM student WHERE ID='$stdID'";
 
-      $queryCourse = "SELECT * FROM course WHERE semester='$semester'";
+      $queryCourse = "SELECT c.* 
+	  				FROM course c
+	  				WHERE c.semester = '$semester'
+	  				AND c.ID NOT IN (SELECT courseID FROM registration WHERE studentID = '$stdID');";
 
       // Connect to MySQL
       if ( !( $database = mysqli_connect( "localhost",
