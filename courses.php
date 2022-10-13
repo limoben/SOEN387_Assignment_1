@@ -53,19 +53,19 @@
     <p><strong>You can select at most 5 courses from the following list:</strong></p>
     <table id="courseTable">
         <?php
-        if ($resultCourse->num_rows != 0 ){
-          print("<tr>
-                  <td>ID</td>
-                  <td>Title</td>
-                  <td>Semester</td>
-                  <td>Days</td>
-                  <td>Time</td>
-                  <td>Instructor</td>
-                  <td>Room</td>
-                  <td>Start Date</td>
-                  <td>End Date</td>
-                  <td>Admin ID</td>
-                </tr>");
+          if ($resultCourse->num_rows != 0 ){
+            print("<tr>
+                    <td>ID</td>
+                    <td>Title</td>
+                    <td>Semester</td>
+                    <td>Days</td>
+                    <td>Time</td>
+                    <td>Instructor</td>
+                    <td>Room</td>
+                    <td>Start Date</td>
+                    <td>End Date</td>
+                    <td>Admin ID</td>
+                  </tr>");
         }
           // fetch each record in result set
           for ( $counter = 0; $row = mysqli_fetch_row( $resultCourse );
