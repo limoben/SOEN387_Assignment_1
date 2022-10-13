@@ -1,10 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-  <style>
-    input{
-      display: block;
-    }
-  </style>
+  <head>
+  <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Assignment 1</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Google Fonts Roboto -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+    <!-- MDB -->
+    <link rel="stylesheet" href="css/mdb.min.css" />
+	<link rel="stylesheet" href="./course.css" />
+  </head>
 
   <body>
     <?php
@@ -42,54 +58,74 @@
 
       mysqli_close( $database );
     ?><!-- end PHP script -->
-    
-    <p> <strong>
-      <?php 
-        $row=mysqli_fetch_row($result);
-        print("$row[0]"); 
-      ?>
-    </strong>, Welcome to Courses page! </p>
-    <p>All courses for this <strong><?php print( "$semester " ); ?></strong> semester are displayed on this page.</p>
-    <p><strong>You can select at most 5 courses from the following list:</strong></p>
-    <table id="courseTable">
-        <?php
-          if ($resultCourse->num_rows != 0 ){
-            print("<tr>
-                    <td>ID</td>
-                    <td>Title</td>
-                    <td>Semester</td>
-                    <td>Days</td>
-                    <td>Time</td>
-                    <td>Instructor</td>
-                    <td>Room</td>
-                    <td>Start Date</td>
-                    <td>End Date</td>
-                    <td>Admin ID</td>
-                  </tr>");
-        }
-          // fetch each record in result set
-          for ( $counter = 0; $row = mysqli_fetch_row( $resultCourse );
-              $counter++ )
-          {
-              // build table to display results
-              print( "<tr>" );
-              print( "<td>" );
-              print( '<input type="checkbox" name="selectCourse" onclick="isSelect(this)"></input>' );
-              print( "</td>" );
-              foreach ( $row as $key => $value ) 
-                print( "<td>$value</td>" );
-              print( "</tr>" );
-          } // end for
-        ?><!-- end PHP script -->
-    </table>
-    <br /><br /><br />
-    <div>
-      <h3>Course Cart:</h3>
-      <form id="registerForm" method="post" action="register.php">
-        <input id="studentID" name="stdID" type="text" value="<?=$stdID?>" readonly />
-        <input id="registerButton" type="submit" value="Register" disabled/>
-      </form>
-    </div>
+    <section class="intro">
+      <div class="bg-image h-100" style="background-image: url('https://mdbootstrap.com/img/Photos/new-templates/tables/img3.jpg');">
+        <h1 class="justify-content-center d-flex" style="color: white"> <strong style="color: orange">
+        <?php 
+          $row=mysqli_fetch_row($result);
+          print("$row[0]"); 
+        ?>
+        </strong>, Welcome to Courses page! </h1>
+        <h3 class="justify-content-center d-flex" style="color: white">All courses for this &nbsp<strong style="color: orange"><?php print( "$semester " ); ?></strong>&nbsp semester are displayed on this page.</h3>
+        <div class="mask d-flex align-items-center h-100" style="background-color: rgba(0,0,0,.25);">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-12">
+                <div class="card bg-dark shadow-2-strong">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <h3 class="text-center mb-5" style="color: white">You can select at most 5 courses from the following list:</h3>
+                      <table id="courseTable" class="table">
+                          <?php
+                            if ($resultCourse->num_rows != 0 ){
+                              print("<thead>
+                                      <tr>
+                                        <th></th>
+                                        <th>ID</th>
+                                        <th>Title</th>
+                                        <th>Semester</th>
+                                        <th>Days</th>
+                                        <th>Time</th>
+                                        <th>Instructor</th>
+                                        <th>Room</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Admin ID</th>
+                                      </tr>
+                                    </thead>");
+                          }
+                            // fetch each record in result set
+                            for ( $counter = 0; $row = mysqli_fetch_row( $resultCourse );
+                                $counter++ )
+                            {
+                                // build table to display results
+                                print( "<tr>" );
+                                print( "<td>" );
+                                print( '<input type="checkbox" name="selectCourse" onclick="isSelect(this)"></input>' );
+                                print( "</td>" );
+                                foreach ( $row as $key => $value ) 
+                                  print( "<td>$value</td>" );
+                                print( "</tr>" );
+                            } // end for
+                          ?><!-- end PHP script -->
+                      </table>
+                      <br /><br /><br />
+                      <div>
+                        <h3 class="justify-content-center d-flex" style="color: white">Course Cart:</h3>
+                        <form class="align-items-center d-flex flex-column" id="registerForm" method="post" action="register.php">
+                          <input id="studentID" name="stdID" type="text" value="<?=$stdID?>" readonly />
+                          <input id="registerButton" type="submit" value="Register" disabled/>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     
     <script>

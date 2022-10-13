@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <style>
-    input{
-      display: block;
-    }
-  </style>
+  <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Assignment 1</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Google Fonts Roboto -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+    <!-- MDB -->
+    <link rel="stylesheet" href="css/mdb.min.css" />
+	<link rel="stylesheet" href="./course.css" />
 </head>
 <body>
   <?php
     extract( $_POST );
-    print( "$stdID" );
     $courseID = $_POST['courseID']; // courseID array stored all the courses the student prepare to enroll
 
     // get the date of the day the student register for the courses
@@ -58,7 +71,6 @@
     } else {
       echo "No result.";
     }
-    var_dump($courseID);
 
     // Second: we check if the courses are still allowed to register
     // if the student add a course over one week after the start of the semester
@@ -81,7 +93,6 @@
     } else {
       echo "No result.";
     }
-    var_dump($courseID);
 
     // build SELECT query
     $ID = $enrolledCoursesResult->num_rows;
@@ -117,24 +128,42 @@
     mysqli_close( $database );
   ?><!-- end PHP script -->
 
-  <p><strong>Your current courses list for this semester: </strong></p>
-    <table id="studentCourseTable">
-        <?php
-          // fetch each record in result set
-          for ( $counter = 0; $row = mysqli_fetch_row( $stuCoursesListResult );
-              $counter++ )
-          {
-            // build table to display results
-            print( "<tr>" );
-            print( "<td>" );
-            print( '<input type="checkbox" name="selectCourse" onclick="isSelect(this)" disabled></input>' );
-            print( "</td>" );
-            foreach ( $row as $key => $value ) 
-              print( "<td>$value</td>" );
-            print( "</tr>" );
-          } // end for
-        ?><!-- end PHP script -->
-    </table>
+  <section class="intro">
+    <div class="bg-image h-100" style="background-image: url('https://mdbootstrap.com/img/Photos/new-templates/tables/img3.jpg');">
+      <div class="mask d-flex align-items-center h-100" style="background-color: rgba(0,0,0,.25);">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div class="card bg-dark shadow-2-strong">
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <h3 class="text-center mb-5" style="color: white">Your current courses list for this semester: </strong></p>
+                    <table id="studentCourseTable" class="table">
+                      <?php
+                        // fetch each record in result set
+                        for ( $counter = 0; $row = mysqli_fetch_row( $stuCoursesListResult );
+                            $counter++ )
+                        {
+                          // build table to display results
+                          print( "<tr>" );
+                          print( "<td>" );
+                          print( '<input type="checkbox" name="selectCourse" onclick="isSelect(this)" disabled></input>' );
+                          print( "</td>" );
+                          foreach ( $row as $key => $value ) 
+                            print( "<td>$value</td>" );
+                          print( "</tr>" );
+                        } // end for
+                      ?><!-- end PHP script -->
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 </body>
 </html>
