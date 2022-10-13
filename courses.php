@@ -53,6 +53,20 @@
     <p><strong>You can select at most 5 courses from the following list:</strong></p>
     <table id="courseTable">
         <?php
+        if ($resultCourse->num_rows != 0 ){
+          print("<tr>
+                  <td>ID</td>
+                  <td>Title</td>
+                  <td>Semester</td>
+                  <td>Days</td>
+                  <td>Time</td>
+                  <td>Instructor</td>
+                  <td>Room</td>
+                  <td>Start Date</td>
+                  <td>End Date</td>
+                  <td>Admin ID</td>
+                </tr>");
+        }
           // fetch each record in result set
           for ( $counter = 0; $row = mysqli_fetch_row( $resultCourse );
               $counter++ )
@@ -73,7 +87,7 @@
       <h3>Course Cart:</h3>
       <form id="registerForm" method="post" action="register.php">
         <input id="studentID" name="stdID" type="text" value="<?=$stdID?>" readonly />
-        <input id="registerButton" type="submit" value="Register" />
+        <input id="registerButton" type="submit" value="Register" disabled/>
       </form>
     </div>
 
@@ -88,6 +102,7 @@
         let row = rowFirstTd.parentNode; // get tr node
         let courseID = row.children[1].innerHTML; // get course ID
         if(obj.checked) {
+          registerButton.removeAttribute("disabled");
           if(courseArray.length < 5){
             if(!courseArray.includes(courseID)){
               courseArray[i] = courseID;
