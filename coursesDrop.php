@@ -39,6 +39,14 @@
   <p><strong>Your current courses list for this semester: </strong></p>
     <table id="studentCourseTable">
         <?php
+          if ($stuCoursesListResult->num_rows != 0 ){
+            print("<tr>
+                    <td>ID</td>
+                    <td>Title</td>
+                    <td>Semester</td>
+                    <td>registration ID</td>
+                  </tr>");
+          } 
           // fetch each record in result set
           for ( $counter = 0; $row = mysqli_fetch_row( $stuCoursesListResult );
               $counter++ )
@@ -75,7 +83,7 @@
       let courseID = row.children[1].innerHTML; // get course ID
       let registrationID = row.children[4].innerHTML;
       if(obj.checked) {
-        registerButton.removeAttribute("disabled");
+        dropButton.removeAttribute("disabled");
         if(registrationIDArray.length < 5){
           if(!registrationIDArray.includes(registrationID)){
             registrationIDArray[i] = registrationID;
