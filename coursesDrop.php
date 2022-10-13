@@ -60,7 +60,7 @@
     <h3>Drop Course:</h3>
     <form id="dropForm" method="post" action="drop.php">
       <input id="studentID" name="stdID" type="text" value="<?=$stdID?>" readonly />
-      <input id="dropButton" type="submit" value="Drop" />
+      <input id="dropButton" type="submit" value="Drop" disabled/>
     </form>
   </div>
   
@@ -75,6 +75,7 @@
       let courseID = row.children[1].innerHTML; // get course ID
       let registrationID = row.children[4].innerHTML;
       if(obj.checked) {
+        registerButton.removeAttribute("disabled");
         if(registrationIDArray.length < 5){
           if(!registrationIDArray.includes(registrationID)){
             registrationIDArray[i] = registrationID;
