@@ -17,10 +17,10 @@
 	<link rel="stylesheet" href="css/mdb.min.css" />
 	<link rel="stylesheet" href="./style.css" />
 </head>
-	<!-- MDB -->
-	<script type="text/javascript" src="js/mdb.min.js"></script>
-	<!-- Custom scripts -->
-	<script type="text/javascript"></script>
+<!-- MDB -->
+<script type="text/javascript" src="js/mdb.min.js"></script>
+<!-- Custom scripts -->
+<script type="text/javascript"></script>
 <body>
 	<section class="intro">
 		<div class="bg-image h-100" style="background-image: url('https://mdbootstrap.com/img/Photos/new-templates/glassmorphism-article/img5.jpg');">
@@ -64,46 +64,31 @@
 										<!-- Pills content -->
 										<div class="tab-content">
 											<div class="tab-pane" id="Login" role="tabpanel" aria-labelledby="tab-login">
-												<!-- TODO: change student form here -->
-												<form>
+
+												<form method="post" action="courses.php">
 
 													<p class="text-center">Enter student ID</p>
 
-													<!-- Email input -->
+													<!-- Student ID input -->
 													<div class="form-outline mb-4">
-														<input type="email" id="loginName" class="form-control" />
-														<label class="form-label" for="loginName">Email or username</label>
+														<input type="number" id="loginName" name="stdID" class="form-control" />
+														<label class="form-label" for="loginName">Student ID</label>
 													</div>
-
-													<!-- Password input -->
-													<div class="form-outline mb-4">
-														<input type="password" id="loginPassword" class="form-control" />
-														<label class="form-label" for="loginPassword">Password</label>
-													</div>
-
-													<!-- 2 column grid layout -->
-													<div class="row mb-4">
-														<div class="col-md-6 d-flex justify-content-center">
-															<!-- Checkbox -->
-															<div class="form-check mb-3 mb-md-0">
-																<input class="form-check-input" type="checkbox" value="" id="loginCheck" checked />
-																<label class="form-check-label" for="loginCheck"> Remember me </label>
-															</div>
+													<p class="text-center">Select the semester</p>
+													<link rel=" stylesheet" href="align_lines.css" />
+													<body>
+														<div class=" main">
+															<input type="radio" id="first" name="semester" value="Fall"> <div class="first" label for="first" p style="color:black;">Fall Term</p></div>
+															<input type="radio" id="second" name="semester" value="Winter"> <div class="second" label for="second" p style="color:black;">Winter Term</p></div>
+															<input type="radio" id="third" name="semester" value="Summer"> <div class="third" label for="third" p style="color:black;">Summer Term</p></div>
 														</div>
+													</body>
+													<button type="submit" class="btn btn-primary btn-block mb-4">Add a course</button>
+												</form>
 
-														<div class="col-md-6 d-flex justify-content-center">
-															<!-- Simple link -->
-															<a href="#!">Forgot password?</a>
-														</div>
-													</div>
-
-													<!-- Submit button -->
-													<button type="submit" class="btn btn-primary btn-block mb-4">Check Student's enrollment</button>
-
-													<!-- Register buttons -->
-													<div class="text-center">
-														<p>Power by <a href="#!">Group</a></p>
-													</div>
+												<!-- select course button -->
+												<form method="post" action="coursesDrop.php">
+													<button type="submit" class="btn btn-primary btn-block mb-4">Drop a course</button>
 												</form>
 											</div>
 											<div class="tab-pane" id="Register" role="tabpanel" aria-labelledby="tab-register">
