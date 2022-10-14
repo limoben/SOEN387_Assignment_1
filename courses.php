@@ -83,7 +83,7 @@
           <div class="container">
             <div class="row justify-content-center">
               <div class="col-12">
-                <div class="card bg-dark shadow-2-strong">
+                <div class="card bg-dark shadow-2-strong" style="height: 35rem;">
                   <div class="card-body">
                     <div class="table-responsive">
                       <?php

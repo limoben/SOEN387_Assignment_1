@@ -134,7 +134,7 @@
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-12">
-              <div class="card bg-dark shadow-2-strong">
+              <div class="card bg-dark shadow-2-strong" style="height: 35rem;">
                 <div class="card-body">
                   <div class="table-responsive">
                     <h3 class="text-center mb-5" style="color: white">Your current courses list for this semester: </strong></p>
@@ -155,6 +155,8 @@
                         } // end for
                       ?><!-- end PHP script -->
                     </table>
+                    <br/><br/><br/>
+                    <a href="/SOEN387_Assignment_1/home.html" class="btn btn-primary">Go Back</a>
                   </div>
                 </div>
               </div>

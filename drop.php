@@ -32,7 +32,7 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-12">
-            <div class="card bg-dark shadow-2-strong">
+            <div class="card bg-dark shadow-2-strong" style="height: 35rem;">
               <div class="card-body">
                 <div class="table-responsive d-flex flex-column justify-content-center align-items-center">
                   <?php
@@ -98,6 +98,8 @@
 
                     mysqli_close( $database );
                   ?><!-- end PHP script -->
+                  <br/><br/><br/>
+                  <a href="/SOEN387_Assignment_1/home.html" class="btn btn-primary">Go Back</a>
                 </div>
               </div>
             </div>
