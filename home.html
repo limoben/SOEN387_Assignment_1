@@ -87,7 +87,7 @@
 													<p class="text-center">Select the semester</p>
 													<link rel=" stylesheet" href="align_lines.css" />
 													<body>
-														<div class=" main">
+														<div class=" main" id="radiobox">
 															<input type="radio" id="first" name="semester" value="Fall"> <div class="first" label for="first" p style="color:black;">Fall Term</p></div>
 															<input type="radio" id="second" name="semester" value="Winter"> <div class="second" label for="second" p style="color:black;">Winter Term</p></div>
 															<input type="radio" id="third" name="semester" value="Summer"> <div class="third" label for="third" p style="color:black;">Summer Term</p></div>
@@ -224,6 +224,20 @@
 	function validation(action) {
 		var input = document.getElementById("loginName");
 		var form = document.getElementById("form1");
+		var radiobox1 = document.getElementById("first");
+		var radiobox2 = document.getElementById("second");
+		var radiobox3 = document.getElementById("third");
+		var radioboxArray=[radiobox1,radiobox2, radiobox3];
+		var checked=false;
+		for(var i=0;i<radioboxArray.length;i++){
+			if(radioboxArray[0].checked){
+				checked=true;
+			}
+		}
+		if(!checked){
+			document.getElementById("errorMessage").innerHTML = "Please select a semester";
+			return;
+		}
 		
 		if (!input.checkValidity()) {
 			document.getElementById("errorMessage").innerHTML = input.validationMessage;
