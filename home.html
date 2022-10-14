@@ -65,7 +65,7 @@
 										<div class="tab-content">
 											<div class="tab-pane" id="Login" role="tabpanel" aria-labelledby="tab-login">
 
-												<form method="post" action="courses.php">
+												<form method="post">
 
 													<p class="text-center">Enter student ID</p>
 
@@ -83,13 +83,13 @@
 															<input type="radio" id="third" name="semester" value="Summer"> <div class="third" label for="third" p style="color:black;">Summer Term</p></div>
 														</div>
 													</body>
-													<button type="submit" class="btn btn-primary btn-block mb-4">Add a course</button>
+													<button type="submit" class="btn btn-primary btn-block mb-4" formaction="courses.php">Add a course</button>
+													<button type="submit" class="btn btn-primary btn-block mb-4" formaction="coursesDrop.php">Drop a course</button>
 												</form>
 
 												<!-- select course button -->
-												<form method="post" action="coursesDrop.php">
-													<button type="submit" class="btn btn-primary btn-block mb-4">Drop a course</button>
-												</form>
+												<!-- <form method="post" action="coursesDrop.php"> -->
+												<!-- </form> -->
 											</div>
 											<div class="tab-pane" id="Register" role="tabpanel" aria-labelledby="tab-register">
 												<form method="post" action="addCourse.php">
