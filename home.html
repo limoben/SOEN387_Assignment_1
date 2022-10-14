@@ -65,15 +65,16 @@
 										<div class="tab-content">
 											<div class="tab-pane" id="Login" role="tabpanel" aria-labelledby="tab-login">
 
-												<form method="post">
+												<form method="post" id="form1">
 
 													<p class="text-center">Enter student ID</p>
 
 													<!-- Student ID input -->
 													<div class="form-outline mb-4">
-														<input type="number" id="loginName" name="stdID" class="form-control" />
+														<input type="number" id="loginName" name="stdID" class="form-control" required/>
 														<label class="form-label" for="loginName">Student ID</label>
 													</div>
+													<p class="text-center" id="errorMessage"></p>
 													<p class="text-center">Select the semester</p>
 													<link rel=" stylesheet" href="align_lines.css" />
 													<body>
@@ -83,8 +84,8 @@
 															<input type="radio" id="third" name="semester" value="Summer"> <div class="third" label for="third" p style="color:black;">Summer Term</p></div>
 														</div>
 													</body>
-													<button type="submit" class="btn btn-primary btn-block mb-4" formaction="courses.php">Add a course</button>
-													<button type="submit" class="btn btn-primary btn-block mb-4" formaction="coursesDrop.php">Drop a course</button>
+													<button type="button" class="btn btn-primary btn-block mb-4" onClick="validation('courses.php')">Add a course</button>
+													<button type="button" class="btn btn-primary btn-block mb-4" onClick="validation('coursesDrop.php')">Drop a course</button>
 												</form>
 
 												<!-- select course button -->
@@ -209,6 +210,18 @@
 		}
 		document.getElementById(name).style.display = "block";
 		evt.currentTarget.className += " fade show active";
+	}
+
+	function validation(action) {
+		var input = document.getElementById("loginName");
+		var form = document.getElementById("form1");
+		
+		if (!input.checkValidity()) {
+			document.getElementById("errorMessage").innerHTML = input.validationMessage;
+		} else {
+			form.action=action;
+			form.submit();
+		}
 	}
 </script>
 </html>
