@@ -28,7 +28,7 @@
 		         // build SELECT query
 		      
 				 $query="INSERT INTO course (ID,title,semester,days,time,instructor,room,startDate,endDate,adminID)
-				 VALUES ('$courseID','$Title','$Semester','$Days','$Time', '$Instructor', '$Room', '$StartDate', '$EndDate', '$AdminId')";
+				 VALUES ('$ID','$Title','$Semester','$Days','$Time', '$Instructor', '$Room', '$StartDate', '$EndDate', '$AdminId')";
 				 
 				 
 		         // Connect to MySQL
@@ -37,7 +37,7 @@
 		            die( "Could not connect to database </body></html>" );
 		   
 		         // open Products database
-		         if ( !mysqli_select_db( $database ,"products" ) )
+		         if ( !mysqli_select_db( $database ,"course_management" ) )
 		            die( "Could not open products database </body></html>" );
 		     
 		
@@ -62,7 +62,7 @@
     <a href="/home" class="btn btn-primary">Go Back</a>
   </div>
   <?php endif; ?>
-  <?php if (!( $result = mysqli_query( $database,$query) )): ?>
+  <?php if (!( $result )): ?>
 	<div class="card-body">
     <h5 class="card-title">Adding fail</h5>
     <p class="card-text"> add your course fail.</p>
