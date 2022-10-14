@@ -129,9 +129,9 @@
                       <br /><br /><br />
                       <div>
                         <h3 class="justify-content-center d-flex" style="color: white">Course Cart:</h3>
-                        <form class="align-items-center d-flex flex-column" id="registerForm" method="post" action="register.php">
+                        <form class="align-items-center d-flex flex-column" id="registerForm" onsubmit="isDisabled()" method="post" action="register.php">
                           <input id="studentID" name="stdID" type="text" value="<?=$stdID?>" readonly />
-                          <input id="registerButton" type="submit" value="Register" disabled/>
+                          <input id="registerButton" type="submit" value="Register"/>
                         </form>
                       </div>
                     </div>
@@ -155,7 +155,7 @@
         let row = rowFirstTd.parentNode; // get tr node
         let courseID = row.children[1].innerHTML; // get course ID
         if(obj.checked) {
-          registerButton.removeAttribute("disabled");
+          // registerButton.removeAttribute("disabled");
           if(courseArray.length < 5){
             if(!courseArray.includes(courseID)){
               courseArray[i] = courseID;
@@ -185,6 +185,15 @@
           console.log("canceled.");
         }
       }
+
+      function isDisabled(){
+        if(courseArray.length === 0){
+          event.preventDefault();
+          alert("Please select course before register.");
+        } else {
+          return true;
+        }
+    }
     </script>
   </body>
 </html>

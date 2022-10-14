@@ -89,9 +89,9 @@
                     <br /><br /><br />
                     <div>
                       <h3 class="justify-content-center d-flex" style="color: white">Drop Course:</h3>
-                      <form class="align-items-center d-flex flex-column" id="dropForm" method="post" action="drop.php">
+                      <form class="align-items-center d-flex flex-column" id="dropForm" onsubmit="isDisabled()" method="post" action="drop.php">
                         <input id="studentID" name="stdID" type="text" value="<?=$stdID?>" readonly />
-                        <input id="dropButton" type="submit" value="Drop" disabled/>
+                        <input id="dropButton" type="submit" value="Drop"/>
                       </form>
                     </div>
                   </div>
@@ -144,6 +144,15 @@
         }
         console.log("canceled.");
       }
+    }
+
+    function isDisabled(){
+        if(registrationIDArray.length === 0){
+          event.preventDefault();
+          alert("Please select course before register.");
+        } else {
+          return true;
+        }
     }
   </script>
 </body>
