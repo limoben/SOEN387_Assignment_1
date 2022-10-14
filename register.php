@@ -71,12 +71,12 @@
       while($row = $result->fetch_assoc()) {
         if(in_array($row["ID"], $courseID)){
           $allowEnrollBefore = date('Y-m-d', strtotime($row["startDate"].'+8 day'));
-          print( "Allow enroll before - " . $allowEnrollBefore );
+          // print( "Allow enroll before - " . $allowEnrollBefore );
           if(strtotime($currentDate) >= strtotime($allowEnrollBefore)) {
-            print("It's too late to enroll the course - ". $row["title"]);
+            // print("It's too late to enroll the course - ". $row["title"]);
             $courseID = array_diff($courseID, [$row["ID"]]);
           } else {
-            print("You can enroll this course.");
+            // print("You can enroll this course.");
           }
         }
       }
@@ -108,7 +108,7 @@
         } // end if
         else
         {
-          print("Course was inserted into the Database correctly");
+          // print("Course was inserted into the Database correctly");
         }
       }
     }

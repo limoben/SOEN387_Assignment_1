@@ -24,7 +24,6 @@
 <body>
   <?php
     extract( $_POST );
-    print( "$stdID" );
     
     $studentCurrentCoursesList = "SELECT course.ID, course.title, course.semester, registration.id 
     							FROM course, registration
@@ -86,6 +85,15 @@
                         } // end for
                       ?><!-- end PHP script -->
                     </table>
+
+                    <!-- If student have no course for this semester, show following message. -->
+                    <?php if (( $stuCoursesListResult->num_rows == 0 )): ?>
+                      <div class="card-body align-items-center d-flex flex-column">
+                      <h5 class="card-title" style="color: grey">No Course to Drop</h5>
+                      <p class="card-text" style="color: grey">You don't have any course for this semester.</p>
+                      <a href="/SOEN387_Assignment_1/home.html" class="btn btn-primary">Go Back</a>
+                      </div>
+                      <?php endif; ?>
                     <br /><br /><br />
                     <div>
                       <h3 class="justify-content-center d-flex" style="color: white">Drop Course:</h3>

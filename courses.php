@@ -125,6 +125,14 @@
                               } // end for
                             }
                           ?><!-- end PHP script -->
+                        <!-- If student already selected 5 courses before, he/she does not allowed to select course anymore -->
+                        <?php if (( $row[0] == 5 )): ?>
+                          <div class="card-body align-items-center d-flex flex-column">
+                          <h5 class="card-title" style="color: grey">Adding fail</h5>
+                          <p class="card-text" style="color: grey">You have already 5 courses for this semester.</p>
+                          <a href="/SOEN387_Assignment_1/home.html" class="btn btn-primary">Go Back</a>
+                          </div>
+                        <?php endif; ?>
                       </table>
                       <br /><br /><br />
                       <div>
