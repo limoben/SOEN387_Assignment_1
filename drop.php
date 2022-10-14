@@ -32,12 +32,12 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-12">
-            <div class="card bg-dark shadow-2-strong" style="height: 35rem;">
+            <div class="card bg-dark shadow-2-strong overflow-auto" style="height: 35rem;">
               <div class="card-body">
                 <div class="table-responsive d-flex flex-column justify-content-center align-items-center">
                   <?php
                     extract( $_POST );
-                    print( "$stdID" );
+                    // print( "$stdID" );
                     $registrationID = $_POST['registrationID']; // registrationID array stored all the courses the student prepare to enroll
 
                     // Connect to MySQL
@@ -66,12 +66,12 @@
                       while($row = $result->fetch_assoc()) {
                         if(in_array($row["id"], $registrationID)){
                           $allowDropBefore = date('Y-m-d', strtotime($row["endDate"]));
-                          print( "Allow drop before - " . $allowDropBefore );
+                          // print( "Allow drop before - " . $allowDropBefore );
                           if(strtotime($currentDate) >= strtotime($allowDropBefore)) {
                             print("It's too late to drop the course - ". $row["title"]);
                             $registrationID = array_diff($registrationID, [$row["id"]]);
                           } else {
-                            print("You can drop this course.");
+                            // print("You can drop this course.");
                           }
                         }
                       }

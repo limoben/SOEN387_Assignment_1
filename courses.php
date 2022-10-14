@@ -83,16 +83,16 @@
           <div class="container">
             <div class="row justify-content-center">
               <div class="col-12">
-                <div class="card bg-dark shadow-2-strong" style="height: 35rem;">
+                <div class="card bg-dark shadow-2-strong overflow-auto" style="height: 35rem;">
                   <div class="card-body">
                     <div class="table-responsive">
                       <?php
-                        $row = mysqli_fetch_row( $resultNumOfCourse );
+                        $rowCount = mysqli_fetch_row( $resultNumOfCourse );
                       ?>
-                      <h3 class="text-center mb-5" style="color: white">You can select at most <?php echo (5 - $row[0]); ?> courses from the following list:</h3>
+                      <h3 class="text-center mb-5" style="color: white">You can select at most <?php echo (5 - $rowCount[0]); ?> courses from the following list:</h3>
                       <table id="courseTable" class="table">
                           <?php
-                            if ($row[0] < 5) {
+                            if ($rowCount[0] < 5) {
                               if ($resultCourse->num_rows != 0 ){
                                 print("<thead>
                                         <tr>
@@ -126,7 +126,7 @@
                             }
                           ?><!-- end PHP script -->
                         <!-- If student already selected 5 courses before, he/she does not allowed to select course anymore -->
-                        <?php if (( $row[0] == 5 )): ?>
+                        <?php if (( $rowCount[0] == 5 )): ?>
                           <div class="card-body align-items-center d-flex flex-column">
                           <h5 class="card-title" style="color: grey">Adding fail</h5>
                           <p class="card-text" style="color: grey">You have already 5 courses for this semester.</p>

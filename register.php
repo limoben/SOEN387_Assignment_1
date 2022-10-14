@@ -134,7 +134,7 @@
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-12">
-              <div class="card bg-dark shadow-2-strong" style="height: 35rem;">
+              <div class="card bg-dark shadow-2-strong overflow-auto" style="height: 35rem;">
                 <div class="card-body">
                   <div class="table-responsive">
                     <h3 class="text-center mb-5" style="color: white">Your current courses list for this semester: </strong></p>
