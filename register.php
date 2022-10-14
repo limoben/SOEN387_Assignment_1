@@ -37,6 +37,10 @@
 						FROM registration 
 						WHERE studentID = $stdID ";
 
+    $queryNumOfCourse = "SELECT count(courseID)
+                        FROM registration
+                        WHERE studentID = '$stdID'";
+
     // Connect to database
     if ( !( $database = mysqli_connect( "localhost",
     "root", "" ) ) )                      
@@ -101,15 +105,25 @@
       $queryRegisterCourse="INSERT INTO registration (ID, studentID, courseID)
       VALUES (NULL,'$stdID','$courseID[$key]')";
 
-      // query Products database
-      if ( !( $result = mysqli_query( $database,$queryRegisterCourse) ) ) 
+      // get number of registered course
+      if ( !( $resultNumOfCourse = mysqli_query( $database, $queryNumOfCourse) ) ) 
       {
-          print( "Could not execute query! <br />" );
-          die( mysqli_error() . "</body></html>" );
+        print( "Could not execute query! <br />" );
+        die( mysqli_error() . "</body></html>" );
       } // end if
-      else
-      {
-      print("Course was inserted into the Database correctly");
+
+      $row = mysqli_fetch_row( $resultNumOfCourse );
+      if ($row[0] < 5) {
+        // query Products database
+        if ( !( $result = mysqli_query( $database,$queryRegisterCourse) ) ) 
+        {
+            print( "Could not execute query! <br />" );
+            die( mysqli_error() . "</body></html>" );
+        } // end if
+        else
+        {
+          print("Course was inserted into the Database correctly");
+        }
       }
     }
 

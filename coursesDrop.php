@@ -64,10 +64,11 @@
                       <?php
                         if ($stuCoursesListResult->num_rows != 0 ){
                           print("<tr>
-                                  <td>ID</td>
-                                  <td>Title</td>
-                                  <td>Semester</td>
-                                  <td>registration ID</td>
+                                  <th></th>
+                                  <th>ID</th>
+                                  <th>Title</th>
+                                  <th>Semester</th>
+                                  <th>registration ID</th>
                                 </tr>");
                         } 
                         // fetch each record in result set

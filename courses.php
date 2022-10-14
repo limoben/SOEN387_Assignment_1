@@ -34,6 +34,10 @@
 	  				WHERE c.semester = '$semester'
 	  				AND c.ID NOT IN (SELECT courseID FROM registration WHERE studentID = '$stdID');";
 
+      $queryNumOfCourse = "SELECT count(courseID)
+                    FROM registration
+                    WHERE studentID = '$stdID'";
+
       // Connect to MySQL
       if ( !( $database = mysqli_connect( "localhost",
       "root", "" ) ) )                      
@@ -43,14 +47,22 @@
       if ( !mysqli_select_db( $database, "course_management") )
           die( "Could not open products database </body></html>" );
 
-      // query Products database
+      // get student name
       if ( !( $result = mysqli_query( $database, $query) ) ) 
       {
         print( "Could not execute query! <br />" );
         die( mysqli_error() . "</body></html>" );
       } // end if
 
+      // get all available course
       if ( !( $resultCourse = mysqli_query( $database, $queryCourse) ) ) 
+      {
+        print( "Could not execute query! <br />" );
+        die( mysqli_error() . "</body></html>" );
+      } // end if
+
+      // get number of registered course
+      if ( !( $resultNumOfCourse = mysqli_query( $database, $queryNumOfCourse) ) ) 
       {
         print( "Could not execute query! <br />" );
         die( mysqli_error() . "</body></html>" );
@@ -74,39 +86,44 @@
                 <div class="card bg-dark shadow-2-strong">
                   <div class="card-body">
                     <div class="table-responsive">
-                      <h3 class="text-center mb-5" style="color: white">You can select at most 5 courses from the following list:</h3>
+                      <?php
+                        $row = mysqli_fetch_row( $resultNumOfCourse );
+                      ?>
+                      <h3 class="text-center mb-5" style="color: white">You can select at most <?php echo (5 - $row[0]); ?> courses from the following list:</h3>
                       <table id="courseTable" class="table">
                           <?php
-                            if ($resultCourse->num_rows != 0 ){
-                              print("<thead>
-                                      <tr>
-                                        <th></th>
-                                        <th>ID</th>
-                                        <th>Title</th>
-                                        <th>Semester</th>
-                                        <th>Days</th>
-                                        <th>Time</th>
-                                        <th>Instructor</th>
-                                        <th>Room</th>
-                                        <th>Start Date</th>
-                                        <th>End Date</th>
-                                        <th>Admin ID</th>
-                                      </tr>
-                                    </thead>");
-                          }
-                            // fetch each record in result set
-                            for ( $counter = 0; $row = mysqli_fetch_row( $resultCourse );
-                                $counter++ )
-                            {
-                                // build table to display results
-                                print( "<tr>" );
-                                print( "<td>" );
-                                print( '<input type="checkbox" name="selectCourse" onclick="isSelect(this)"></input>' );
-                                print( "</td>" );
-                                foreach ( $row as $key => $value ) 
-                                  print( "<td>$value</td>" );
-                                print( "</tr>" );
-                            } // end for
+                            if ($row[0] < 5) {
+                              if ($resultCourse->num_rows != 0 ){
+                                print("<thead>
+                                        <tr>
+                                          <th></th>
+                                          <th>ID</th>
+                                          <th>Title</th>
+                                          <th>Semester</th>
+                                          <th>Days</th>
+                                          <th>Time</th>
+                                          <th>Instructor</th>
+                                          <th>Room</th>
+                                          <th>Start Date</th>
+                                          <th>End Date</th>
+                                          <th>Admin ID</th>
+                                        </tr>
+                                      </thead>");
+                              }
+                              // fetch each record in result set
+                              for ( $counter = 0; $row = mysqli_fetch_row( $resultCourse );
+                                  $counter++ )
+                              {
+                                  // build table to display results
+                                  print( "<tr>" );
+                                  print( "<td>" );
+                                  print( '<input type="checkbox" name="selectCourse" onclick="isSelect(this)"></input>' );
+                                  print( "</td>" );
+                                  foreach ( $row as $key => $value ) 
+                                    print( "<td>$value</td>" );
+                                  print( "</tr>" );
+                              } // end for
+                            }
                           ?><!-- end PHP script -->
                       </table>
                       <br /><br /><br />
