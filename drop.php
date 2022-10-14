@@ -44,6 +44,36 @@
           if ( !mysqli_select_db( $database, "course_management") )
               die( "<div>Could not open products database<div> </body></html>" );
 
+          $currentDate = date("2022-10-14");
+
+          $queryCoursesEndDate = "SELECT registration.*, course.endDate, course.title
+                                FROM registration, course
+                                WHERE registration.courseID = course.ID";
+
+          // query Products database
+          if ( !( $result = mysqli_query( $database, $queryCoursesEndDate) ) ) 
+          {
+            print( "Could not execute query! <br />" );
+            die( mysqli_error() . "</body></html>" );
+          } // end if
+
+          if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+              if(in_array($row["id"], $registrationID)){
+                $allowDropBefore = date('Y-m-d', strtotime($row["endDate"]));
+                print( "Allow drop before - " . $allowDropBefore );
+                if(strtotime($currentDate) >= strtotime($allowDropBefore)) {
+                  print("It's too late to drop the course - ". $row["title"]);
+                  $registrationID = array_diff($registrationID, [$row["id"]]);
+                } else {
+                  print("You can drop this course.");
+                }
+              }
+            }
+          } else {
+            echo "No result.";
+          }
+
           // build SELECT query
           foreach( $registrationID as $key => $element){
             $deleteCourseQuery="DELETE FROM registration WHERE ID=$element";

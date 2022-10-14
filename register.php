@@ -63,20 +63,7 @@
       die( mysqli_error() . "</body></html>" );
     } // end if
 
-    // First: here we checked if the courses already register once
-    // if so, we delete the enrolled course from the courseID array
-    if ($enrolledCoursesResult->num_rows > 0) {
-      while($row = $enrolledCoursesResult->fetch_assoc()) {
-        if(in_array($row["courseID"], $courseID)){
-          $courseID = array_diff($courseID, [$row["courseID"]]);
-        }
-        // echo "id: " . $row["ID"]. " - Name: " . $row["title"]. " " . $row["startDate"]. "<br>";
-      }
-    } else {
-      echo "No result.";
-    }
-
-    // Second: we check if the courses are still allowed to register
+    // First: we check if the courses are still allowed to register
     // if the student add a course over one week after the start of the semester
     // then the course is not allowed to register
     // we delete it from the courseID array
@@ -84,10 +71,9 @@
       while($row = $result->fetch_assoc()) {
         if(in_array($row["ID"], $courseID)){
           $allowEnrollBefore = date('Y-m-d', strtotime($row["startDate"].'+8 day'));
-          print( $allowEnrollBefore );
+          print( "Allow enroll before - " . $allowEnrollBefore );
           if(strtotime($currentDate) >= strtotime($allowEnrollBefore)) {
-            print("It's too late to enroll the course.");
-            print($row["title"]);
+            print("It's too late to enroll the course - ". $row["title"]);
             $courseID = array_diff($courseID, [$row["ID"]]);
           } else {
             print("You can enroll this course.");
@@ -97,7 +83,7 @@
     } else {
       echo "No result.";
     }
-
+    
     // build SELECT query
     $ID = $enrolledCoursesResult->num_rows;
     foreach( $courseID as $key => $element){ // 有几个 input 就创建几个 insert query，-1 是减去studentID的input
